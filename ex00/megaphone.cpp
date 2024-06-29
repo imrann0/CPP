@@ -17,7 +17,7 @@ int	main(int ar, char **av)
 		{
 			std::string str = av[i];
 			j = 0;
-			while (j < str.length())
+			while (j < (int)str.length())
 			{
 				std::cout << (char)toupper(av[i][j]);
 				j++;
