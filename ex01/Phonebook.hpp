@@ -1,13 +1,13 @@
-#include <iostream>
+#ifndef PHONEBOOK_H
+# define PHONEBOOK_H
 
-class PhoneBook
+#include "Contact.hpp"
+
+class Phonebook
 {
 	private:
-	 	std::string first_name;
-		std::string	last_name;
-		std::string	nickname;
-		std::string	pohne_number;
+		Contact con[8];
 	public:
-		PhoneBook();
-		~PhoneBook();
 };
+
+#endif
