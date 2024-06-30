@@ -10,4 +10,6 @@ class Contact
 	public:
 		Contact();
 		~Contact();
+		std::string get_first_name();
+		void	set_first_name(std::string name);
 };
