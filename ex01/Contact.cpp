@@ -37,5 +37,5 @@ void	Contact::set_nick_name(std::string nick)
 
 void	Contact::set_phone_number(std::string phone)
 {
-	this->pohne_number = phone;
+	this->pohne_number = phone;  
 }
