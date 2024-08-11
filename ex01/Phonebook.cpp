@@ -75,35 +75,37 @@ void Phonebook::Add()
 	//std::cout <<"Name: " << name <<" " << surname <<" " << nickname <<" " << number <<" " << secret<< std::endl;
 }
 
-void Phonebook::Search()
+void Phonebook::Search(void)
 {
 	int j;
 	std::string num;
 
 	j = 0;
-	if (this->i == 0 && 0)
+	if (this->i == 0)
 		std::cout << "Phonebook empty" << std::endl;
 	else
 	{
 		std::cout << "Phonebook İd: ";
 		std::getline(std::cin, num);
-		if (num.length() > 1 || num.compare("8") > 0 || num.compare("0") < 0)
-			std::cout << "Hatalı İnput" << std::endl;
+		if (std::cin.eof())
+		{
+			std::cout << "Control ^D Exiting phonebook" << std::endl;
+			exit(0);
+		}
+		else if (num.empty() || num.length() > 1 || num.compare("8") > 0 || num.compare("0") < 0)
+			std::cout << "Please enter a value between 1 and 8" << std::endl;
 		else
+		{
 			j = std::atoi(num.c_str());
+			if (j != 0 && j <= this->i)
+				print_contact(this->con[j - 1]);
+			else
+				std::cout << "Invalid ID" << std::endl;
+		}
 	}
 
 	if (j != 0 && j <= this->i)
 	{
 		print_contact(this->con[j - 1]);
-	}
-	else // NE DURUMDA hepsi listelencek kesin bir koşul yok
-	{
-		j = 0;
-		while(this->i > j)
-		{
-			print_contact(this->con[j]);
-			j++;
-		}
 	}
 }
