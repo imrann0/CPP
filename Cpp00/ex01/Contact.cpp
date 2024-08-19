@@ -6,20 +6,11 @@
 /*   By: albozkur <albozkur@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 12:07:20 by albozkur          #+#    #+#             */
-/*   Updated: 2024/08/16 12:07:21 by albozkur         ###   ########.fr       */
+/*   Updated: 2024/08/19 11:53:23 by albozkur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
-
-Contact::Contact()
-{
-
-}
-Contact::~Contact()
-{
-
-}
 
 std::string Contact::get_name(void)
 {

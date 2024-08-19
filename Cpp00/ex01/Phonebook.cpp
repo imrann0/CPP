@@ -1,31 +1,55 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Phonebook.cpp                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: albozkur <albozkur@student.42kocaeli.co    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 12:07:35 by albozkur          #+#    #+#             */
-/*   Updated: 2024/08/16 12:07:36 by albozkur         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Phonebook.hpp"
+#include <iomanip>
+#include <unistd.h>
 
 Phonebook::Phonebook()
 {
 	this->i = 0;
-	std::cout << "Phonebook Başlatıldı i = " << i << std::endl;
+	std::cout << "Phonebook Launched i = " << i << std::endl;
 }
 
 
-void Phonebook::print_contact(Contact contact)
+void Phonebook::print_contact()
 {
-	std:: cout << "Name:         " << contact.get_name() << " | ";
-	std:: cout << "Surname:      " << contact.get_surname() << " | ";
-	std:: cout << "Nick Name:    " << contact.get_nick_name() << " | ";
-	std:: cout << "Phone Number: " << contact.get_phone_number() << " | ";
-	std:: cout << "Secret:       " << contact.get_secret() << std::endl;
+	int i;
+
+	i = 0;
+	std::cout << std::setw(10) << std::left << "ID"<< "|";
+	std::cout << std::setw(10) << std::left << "Name" << "|";
+	std::cout << std::setw(10) << std::left << "Surname" << "|";
+	std::cout << std::setw(10) << std::left << "Nick" << "|";
+	std::cout << std::setw(10) << std::left << "Phone" << std::endl;
+
+	while (i < this->i && i < 8)
+	{
+		std::cout << std::setw(10) << std::left << i + 1 << "|";
+		if (con[i].get_name().length() > 10)
+			std::cout << con[i].get_name().substr(0, 9) << ".|";
+		else
+			std::cout << std::setw(10) << std::left << this->con[i].get_name() << "|";
+		if (con[i].get_surname().length() > 10)
+			std::cout << con[i].get_name().substr(0, 9) << ".|";
+		else
+			std::cout << std::setw(10) << std::left << this->con[i].get_surname() << "|";
+		if (con[i].get_nick_name().length() > 10)
+			std::cout << con[i].get_nick_name().substr(0, 9) << ".|";
+		else
+			std::cout << std::setw(10) << std::left << this->con[i].get_nick_name() << "|";
+		if (con[i].get_phone_number().length() > 10)
+			std::cout << con[i].get_phone_number().substr(0, 9) << "." << std::endl;
+		else
+			std::cout << std::setw(10) << std::left << this->con[i].get_phone_number() << std::endl;
+		i++;
+	}
+}
+
+void Phonebook::print_id(Contact con)
+{
+	std::cout << "Name: " << con.get_name() << std::endl;
+	std::cout << "Surname: " << con.get_surname() << std::endl;
+	std::cout << "Nick Name: " << con.get_nick_name() << std::endl;
+	std::cout << "Phone Number: " << con.get_phone_number() << std::endl;
+	std::cout << "Secret: " << con.get_secret() << std::endl;
 }
 
 void Phonebook::Add()
@@ -41,6 +65,11 @@ void Phonebook::Add()
 	{
 		std::cout << "Name: ";
 		std::getline(std::cin, name);
+		if (std::cin.eof())
+		{
+			std::cout << "\nControl ^D Exiting phonebook" << std::endl;
+			return ;
+		}
 		if (!name.empty())
 			con.set_name(name);
 		else
@@ -50,6 +79,11 @@ void Phonebook::Add()
 	{
 		std::cout << "Surname: ";
 		std::getline(std::cin, surname);
+		if (std::cin.eof())
+		{
+			std::cout << "\nControl ^D Exiting phonebook" << std::endl;
+			return ;
+		}
 		if (!surname.empty())
 			con.set_surname(surname);
 		else
@@ -59,6 +93,11 @@ void Phonebook::Add()
 	{
 		std::cout << "Nick Name: ";
 		std::getline(std::cin, nickname);
+		if (std::cin.eof())
+		{
+			std::cout << "\nControl ^D Exiting phonebook" << std::endl;
+			return ;
+		}
 		if (!nickname.empty())
 			con.set_nick_name(nickname);
 		else
@@ -68,6 +107,11 @@ void Phonebook::Add()
 	{
 		std::cout << "Phone Number: ";
 		std::getline(std::cin, number);
+		if (std::cin.eof())
+		{
+			std::cout << "\nControl ^D Exiting phonebook" << std::endl;
+			return ;
+		}
 		if (!number.empty())
 			con.set_phone_number(number);
 		else
@@ -77,6 +121,11 @@ void Phonebook::Add()
 	{
 		std::cout << "Secret: ";
 		std::getline(std::cin, secret);
+		if (std::cin.eof())
+		{
+			std::cout << "\nControl ^D Exiting phonebook" << std::endl;
+			return ;
+		}
 		if (!secret.empty())
 			con.set_secret(secret);
 		else
@@ -84,40 +133,42 @@ void Phonebook::Add()
 	}
 	this->con[this->i % 8] = con;
 	this->i++;
-	//std::cout <<"Name: " << name <<" " << surname <<" " << nickname <<" " << number <<" " << secret<< std::endl;
 }
 
 void Phonebook::Search(void)
 {
 	int j;
 	std::string num;
-
 	j = 0;
 	if (this->i == 0)
 		std::cout << "Phonebook empty" << std::endl;
 	else
+		print_contact();
+	if (this->i != 0)
 	{
-		std::cout << "Phonebook İd: ";
-		std::getline(std::cin, num);
-		if (std::cin.eof())
+		while(num.empty())
 		{
-			std::cout << "Control ^D Exiting phonebook" << std::endl;
-			exit(0);
-		}
-		else if (num.empty() || num.length() > 1 || num.compare("8") > 0 || num.compare("0") < 0)
-			std::cout << "Please enter a value between 1 and 8" << std::endl;
-		else
-		{
-			j = std::atoi(num.c_str());
-			if (j != 0 && j <= this->i)
-				print_contact(this->con[j - 1]);
+			std::cout << "Phonebook İd: ";
+			std::getline(std::cin, num);
+			if (std::cin.eof())
+			{
+				std::cout << "Control ^D Exiting phonebook" << std::endl;
+				return ;
+			}
+			else if (num.empty() || num.length() > 1 || num.compare("8") > 0 || num.compare("0") < 0)
+				std::cout << "Please enter a value between 1 and 8" << std::endl;
 			else
-				std::cout << "Invalid ID" << std::endl;
+			{
+				j = std::atoi(num.c_str());
+				if (j != 0 && j <= this->i)
+				{
+					print_id(this->con[j  - 1]);
+					return ;
+				}
+				else
+					std::cout << "Invalid ID" << std::endl;
+			}
+			num.clear();
 		}
-	}
-
-	if (j != 0 && j <= this->i)
-	{
-		print_contact(this->con[j - 1]);
 	}
 }

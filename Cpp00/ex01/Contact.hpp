@@ -6,9 +6,12 @@
 /*   By: albozkur <albozkur@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 12:07:25 by albozkur          #+#    #+#             */
-/*   Updated: 2024/08/16 12:07:26 by albozkur         ###   ########.fr       */
+/*   Updated: 2024/08/19 11:57:24 by albozkur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef CONTACT_H
+# define CONTACT_H
 
 #include <iostream>
 
@@ -21,8 +24,6 @@ class Contact
 		std::string	pohne_number;
 		std::string secret;
 	public:
-		Contact();
-		~Contact();
 		std::string get_name();
 		std::string get_surname();
 		std::string get_nick_name();
@@ -34,3 +35,5 @@ class Contact
 		void	set_phone_number(std::string phone);
 		void	set_secret(std::string secret);
 };
+
+#endif

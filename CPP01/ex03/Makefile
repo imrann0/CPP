@@ -1,6 +1,8 @@
-NAME =	Account
-SRC =	Account.cpp \
-		tests.cpp
+NAME =	ho
+SRC =	main.cpp \
+		HumanA.cpp \
+		Weapon.cpp \
+		HumanB.cpp
 
 OBJ = $(SRC:.cpp=.o)
 FLAG = -Wall -Wextra -Werror -std=c++98

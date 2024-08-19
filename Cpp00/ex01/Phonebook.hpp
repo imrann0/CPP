@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: albozkur <albozkur@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 12:07:41 by albozkur          #+#    #+#             */
-/*   Updated: 2024/08/16 12:07:42 by albozkur         ###   ########.fr       */
+/*   Created: 2024/08/16 12:17:44 by albozkur          #+#    #+#             */
+/*   Updated: 2024/08/16 12:17:46 by albozkur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ class Phonebook
 	public:
 		Phonebook();
 		void Add();
-		void print_contact(Contact contact);
+		void print_contact();
+		void print_id(Contact con);
 		void Search();
 };
 

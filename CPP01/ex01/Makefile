@@ -1,6 +1,7 @@
-NAME =	Account
-SRC =	Account.cpp \
-		tests.cpp
+NAME =	Zombie
+SRC =	Zombie.cpp \
+		zombieHorde.cpp \
+		main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 FLAG = -Wall -Wextra -Werror -std=c++98
