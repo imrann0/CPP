@@ -4,10 +4,12 @@
 int main (int ar, char **av)
 {
 	Harl harl;
+	std::string str;
 
+	str = av[1];
 	if (ar != 2)
 		std::cout << "Invalid number of arguments" << std::endl;
 	else
-		harl.complain(std::string(av[1]));
+		harl.complain(str);
 	return (0);
 }

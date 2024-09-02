@@ -9,10 +9,10 @@ int main(void)
 	Zombie a("FOO");
 	a.announce();
 
-	Zombie *z = newZombie("OFFFFF");
+	Zombie *z = newZombie("LOO");
 	z->announce();
 	delete z;
-	randomChump("KAAAAA");
+	randomChump("RAA");
 
 	return (0);
 }
