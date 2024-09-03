@@ -1,4 +1,4 @@
-NAME =	ho
+NAME =	file
 SRC =	main.cpp 
 
 OBJ = $(SRC:.cpp=.o)

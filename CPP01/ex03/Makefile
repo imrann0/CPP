@@ -1,4 +1,4 @@
-NAME =	ho
+NAME =	Human
 SRC =	main.cpp \
 		HumanA.cpp \
 		Weapon.cpp \

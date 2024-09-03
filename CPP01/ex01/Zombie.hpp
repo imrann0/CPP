@@ -1,6 +1,6 @@
 
-#ifndef ZOMBİE_H
-# define ZOMBİE_H
+#ifndef ZOMBIE_H
+# define ZOMBIE_H
 
 #include <iostream>
 
@@ -8,8 +8,8 @@ class Zombie
 {
 	public:
 		Zombie(void);
-		~Zombie();
 		Zombie(std::string name);
+		~Zombie();
 		void	SetName(std::string name);
 		void	announce( void );
 	private:

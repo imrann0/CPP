@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 
-int main(int ar, char **av)
+int main(int ar, char **av) 
 {
 	std::ifstream	input;
 	std::ofstream	output;

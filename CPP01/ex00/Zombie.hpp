@@ -1,6 +1,6 @@
 
-#ifndef ZOMBİE_H
-#define ZOMBİE_H
+#ifndef ZOMBIE_H
+#define ZOMBIE_H
 
 #include <iostream>
 

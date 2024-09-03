@@ -1,4 +1,4 @@
-NAME =	ho
+NAME =	Brain
 SRC = main.cpp
 
 OBJ = $(SRC:.cpp=.o)
