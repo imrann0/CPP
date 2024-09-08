@@ -37,6 +37,7 @@ class Fixed
 		void	setRawBits( int const raw);
 		float	toFloat(void) const;
 		int		toInt(void) const;
+		Fixed	abs() const;
 	private:
 		int _value;
 		static const int _bits = 8;

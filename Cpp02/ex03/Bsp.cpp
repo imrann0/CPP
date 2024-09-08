@@ -8,15 +8,8 @@ Fixed	triangleArea(Point const a, Point const b, Point const c)
 	Fixed ca = b.getX() * (c.getY() - a.getY());
 	Fixed ab = c.getX() * (a.getY() - b.getY());
 
-	if (bc < 0)
-		bc = bc * -1;
-	if (ca < 0)
-		ca = ca * -1.0f;
-	if (ab < 0)
-		ab = ab * -1.0f;
-	std::cout << bc << " 31 " << ca << " " << ab << std::endl;
-	Fixed area = (bc + ca + ab) / 2.0f;
-	return (area);
+	Fixed area = (bc + ca + ab) / Fixed(2.0f);
+	return (area.abs());
 }
 
 

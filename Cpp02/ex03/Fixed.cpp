@@ -111,9 +111,15 @@ int Fixed::getRawBits(void) const { return this->_value; }
 
 void Fixed::setRawBits(int const raw) { this->_value = raw; }
 
-float	Fixed::toFloat(void) const { return (float)_value / 256; }
+float	Fixed::toFloat(void) const { return (float)_value / (float)(1 << _bits);}
 
 int		Fixed::toInt(void) const { return (_value / 256); }
+
+Fixed Fixed::abs() const {
+	if (this->_value < 0)
+		return Fixed(-this->toFloat());
+	return *this;
+}
 
 std::ostream&	operator<<(std::ostream &o, Fixed const &fixed)
 {

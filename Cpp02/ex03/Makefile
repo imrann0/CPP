@@ -1,7 +1,8 @@
 NAME =	Fixed
 SRC =	main.cpp \
 		Point.cpp \
-		Fixed.cpp
+		Fixed.cpp \
+		Bsp.cpp
 
 OBJ = $(SRC:.cpp=.o)
 FLAG = -Wall -Wextra -Werror -std=c++98
