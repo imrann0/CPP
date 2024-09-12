@@ -22,7 +22,7 @@ Fixed::Fixed(int const num)
 Fixed::Fixed(float const num)
 {
 	std::cout << "Float constructor called" << std::endl;
-	_value = roundf(num * 256);
+	_value = roundf(num * (1 << _bits));
 }
 
 Fixed::Fixed(Fixed const &fix)
@@ -111,9 +111,9 @@ int Fixed::getRawBits(void) const { return this->_value; }
 
 void Fixed::setRawBits(int const raw) { this->_value = raw; }
 
-float	Fixed::toFloat(void) const { return (float)_value / 256; }
+float	Fixed::toFloat(void) const { return (float)_value / (float)(1 << _bits); }
 
-int		Fixed::toInt(void) const { return (_value / 256); }
+int		Fixed::toInt(void) const { return (_value / (1 << _bits)); }
 
 std::ostream&	operator<<(std::ostream &o, Fixed const &fixed)
 {

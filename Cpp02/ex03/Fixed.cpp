@@ -16,13 +16,13 @@ Fixed::~Fixed()
 Fixed::Fixed(int const num)
 {
 	std::cout << "Int constructor called" << std::endl;
-	_value = num * 256;
+	_value = num * (1 << _bits);
 }
 
 Fixed::Fixed(float const num)
 {
 	std::cout << "Float constructor called" << std::endl;
-	_value = roundf(num * 256);
+	_value = roundf(num * (1 << _bits));
 }
 
 Fixed::Fixed(Fixed const &fix)
@@ -113,7 +113,7 @@ void Fixed::setRawBits(int const raw) { this->_value = raw; }
 
 float	Fixed::toFloat(void) const { return (float)_value / (float)(1 << _bits);}
 
-int		Fixed::toInt(void) const { return (_value / 256); }
+int		Fixed::toInt(void) const { return (_value / (1 << _bits)); }
 
 Fixed Fixed::abs() const {
 	if (this->_value < 0)
