@@ -20,10 +20,7 @@ bool bsp(Point const a,Point const b,Point const c,Point const point)
 	Fixed apc = triangleArea(a, point, c);
 	Fixed abp = triangleArea(a, b, point);
 
-	std::cout << "31 " << abc << " " << pbc << " " << apc << " " << abp << std::endl;
-	if (abc == (pbc + apc + abp))
-		std::cout << "31 Ulas" << std::endl;
-	else
-		std::cout << "31 asfaf" << std::endl;
+	if (abc != (pbc + apc + abp))
+		return (false);
 	return (true);
 }

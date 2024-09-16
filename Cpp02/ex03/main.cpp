@@ -6,9 +6,12 @@ int main()
 	Point a(0,0);
 	Point b(5,0);
 	Point c(0,5);
-	Point d(2.5,2.5);
-	bsp(a,b,c,d);
+	Point d(2.6,2.5);
 
-	//std::cout << b.getX();
-	//std::cout << b.getY() << std::endl;
+	if (bsp(a,b,c,d) == false)
+	{
+		std::cout << "not inside the triangle." << std::endl;
+	}
+	else
+		std::cout << "Inside the triangle." << std::endl;
 }
