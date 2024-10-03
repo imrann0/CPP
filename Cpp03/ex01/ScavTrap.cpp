@@ -23,6 +23,8 @@ ScavTrap::ScavTrap(const ScavTrap &copy) : ClapTrap(copy)
 ScavTrap& ScavTrap::operator=(const ScavTrap &trap)
 {
 	std::cout << "ScavTrap Assignation operator called" << std::endl;
+	if (&trap == this)
+		return (*this);
 	_name = trap._name;
 	_damage = trap._damage;
 	_hit = trap._hit;
@@ -40,18 +42,18 @@ void	ScavTrap::attack(const std::string& target)
 	if (_energy > 0 && _hit >= 0)
 	{
 		std::cout << "ScavTrap " << _name << " attacks " << target << " causing "
-		<< _damage << " points of!" << std::endl;
+		<< _damage << " points of damage!" << std::endl;
 		_energy--;
+	}
+	else if (_hit == 0)
+	{
+		std::cout << "ScavTrap " << _name << " is not able to attack " << target
+		<< " because he has not enough hit points." << std::endl;
 	}
 	else if (_energy == 0)
 	{
 		std::cout << "ScavTrap " << _name << " is not able to attack " << target
 		<< " because he has no energy points left." << std::endl;
-	}
-	else
-	{
-		std::cout << "ScavTrap " << _name << " is not able to attack " << target
-		<< " because he has not enough hit points." << std::endl;
 	}
 }
 
