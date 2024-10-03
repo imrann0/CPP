@@ -27,8 +27,6 @@ DiamondTrap::DiamondTrap(const DiamondTrap &copy) : ClapTrap(copy), ScavTrap(cop
 DiamondTrap& DiamondTrap::operator=(const DiamondTrap &opt)
 {
 	ClapTrap::operator=(opt);
-	ScavTrap::operator=(opt);
-	FragTrap::operator=(opt);
 	this->_name = opt._name;
 	return *this;
 }

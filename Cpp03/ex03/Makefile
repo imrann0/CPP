@@ -6,7 +6,7 @@ SRC =	main.cpp \
 		DiamondTrap.cpp
 
 OBJ = $(SRC:.cpp=.o)
-FLAG = -Wall -Wextra -Werror -std=c++98
+FLAG = -Wall -Wextra -Werror -std=c++98 -Wshadow
 
 all: $(NAME)
 
