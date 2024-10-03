@@ -2,7 +2,6 @@
 
 DiamondTrap::DiamondTrap():ClapTrap("deafult_clap_name")
 {
-
 	this->_name ="Default";
 	_hit = FragTrap::_hit;
 	_energy =ScavTrap::_energy;

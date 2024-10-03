@@ -31,10 +31,10 @@ ClapTrap::ClapTrap(ClapTrap const &trap)
 
 ClapTrap& ClapTrap::operator=(ClapTrap const &trap)
 {
+	std::cout << "Copy Assignment Operator Called" << std::endl;
 	if (&trap == this)
 		return (*this);
 
-	std::cout << "Copy Assignment Operator Called" << std::endl;
 	_name = trap._name;
 	_hit = trap._hit;
 	_energy = trap._energy;
