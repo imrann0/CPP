@@ -4,7 +4,8 @@ SRC =	main.cpp \
 		Cat.cpp \
 		Animal.cpp \
 		WrongCat.cpp \
-		WrongAnimal.cpp
+		WrongAnimal.cpp \
+		Brain.cpp
 
 OBJ = $(SRC:.cpp=.o)
 FLAG = -Wall -Wextra -Werror -std=c++98
