@@ -2,6 +2,8 @@
 #include "Cat.hpp"
 int main()
 {
-	Cat l;
-	Cat s(l);
+	Dog l;
+	l.setBrainIdea(0, "asfasf");
+	Dog s(l);
+	s.printIdeas();
 }
