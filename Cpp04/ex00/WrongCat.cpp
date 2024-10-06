@@ -3,7 +3,7 @@
 WrongCat::WrongCat(): WrongAnimal()
 {
 	std::cout << "WrongCat Default Constructor Called" << std::endl;
-	_type = "Default";
+	_type = "Cat";
 }
 
 WrongCat::~WrongCat()

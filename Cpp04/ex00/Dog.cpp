@@ -3,7 +3,7 @@
 Dog::Dog(): Animal()
 {
 	std::cout << "Dog Default Constructor Called" << std::endl;
-	_type = "Default";
+	_type = "Dog";
 }
 
 Dog::~Dog()
