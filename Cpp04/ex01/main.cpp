@@ -41,5 +41,9 @@ int main()
 		a.printIdeas();
 		b.printIdeas();
 	}
-
+	{
+		Animal *a = new Dog();
+		a->makeSound();
+		delete a;
+	}
 }

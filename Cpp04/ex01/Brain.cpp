@@ -9,12 +9,12 @@ Brain::Brain()
 
 Brain::~Brain()
 {
-	std::cout << "Destructor Called" << std::endl;
+	std::cout << "Brain Destructor Called" << std::endl;
 }
 
 Brain::Brain(const Brain &copy)
 {
-	std::cout << "Copy Constructor Called" << std::endl;
+	std::cout << "Brain Copy Constructor Called" << std::endl;
 	*this = copy;
 }
 Brain& Brain::operator=(const Brain &opt)
