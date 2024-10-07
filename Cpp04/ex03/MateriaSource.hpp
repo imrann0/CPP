@@ -7,8 +7,8 @@ class MateriaSource: IMateriaSource
 {
 	public:
 		~MateriaSource();
-		void learnMateria(AMateria*);
-		AMateria* createMateria(std::string const & type);
+		void learnMateria(AMateria* materia);
+		AMateria* createMateria(std::string const &type);
 };
 
 #endif

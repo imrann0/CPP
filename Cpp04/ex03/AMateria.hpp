@@ -9,8 +9,12 @@ class AMateria
 {
 	public:
 		AMateria();
+		~AMateria();
 		AMateria(std::string const & type);
-		std::string const & getType() const; //Returns the materia type
+		AMateria(const AMateria& copy);
+		AMateria& operator=(const AMateria &opt);
+
+		std::string const & getType() const;
 		virtual AMateria* clone() const = 0;
 		virtual void use(ICharacter& target);
 	protected:
