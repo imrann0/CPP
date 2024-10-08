@@ -6,6 +6,12 @@ Character::Character()
 	_name = "(null)";
 	for (size_t i = 0; i < 4; i++)
 		_inventory[i] = NULL;
+
+	_garbageCapacity = 10;
+	_garbageIndex = 0;
+	_garbage_inventory = new AMateria*[_garbageCapacity];
+	for (int i = 0; i < _garbageCapacity; i++)
+		_garbage_inventory[i] = NULL;
 }
 
 Character::Character(const std::string name)
@@ -13,6 +19,12 @@ Character::Character(const std::string name)
 	_name = name;
 	for (size_t i = 0; i < 4; i++)
 		_inventory[i] = NULL;
+
+	_garbageCapacity = 10;
+	_garbageIndex = 0;
+	_garbage_inventory = new AMateria*[_garbageCapacity];
+	for (int i = 0; i < _garbageCapacity; i++)
+		_garbage_inventory[i] = NULL;
 }
 
 Character::Character(const Character &copy)
@@ -25,6 +37,17 @@ Character::Character(const Character &copy)
 			this->_inventory[i] = copy._inventory[i]->clone();
 		else
 			this->_inventory[i] = NULL;
+	}
+
+	_garbageCapacity = copy._garbageCapacity;
+	_garbageIndex = copy._garbageIndex;
+	_garbage_inventory = new AMateria*[_garbageCapacity];
+	for (int i = 0; i < _garbageCapacity; i++)
+	{
+		if (i < _garbageIndex)
+			_garbage_inventory[i] = copy._garbage_inventory[i];
+		else
+			_garbage_inventory[i] = NULL;
 	}
 }
 
@@ -44,10 +67,24 @@ Character& Character::operator=(const Character &opt)
 
 		for (int i = 0; i < 4; i++)
 		{
-			if (copy._inventory[i])
-				this->_inventory[i] = copy._inventory[i]->clone();
+			if (opt._inventory[i])
+				this->_inventory[i] = opt._inventory[i]->clone();
 			else
 				this->_inventory[i] = NULL;
+		}
+
+		delete[] _garbage_inventory;
+
+		_garbageCapacity = opt._garbageCapacity;
+		_garbageIndex = opt._garbageIndex;
+
+		_garbage_inventory = new AMateria*[_garbageCapacity];
+		for (int i = 0; i < _garbageCapacity; i++)
+		{
+			if (i < _garbageIndex)
+				_garbage_inventory[i] = opt._garbage_inventory[i];
+			else
+				_garbage_inventory[i] = NULL;
 		}
 	}
 	return *this;
@@ -63,6 +100,7 @@ Character::~Character()
 			_inventory[i] = nullptr;
 		}
 	}
+	delete[] _garbage_inventory;
 }
 
 std::string const & Character::getName() const
@@ -92,8 +130,12 @@ void Character::unequip(int idx)
 		return ;
 	if (this->_inventory[idx] != NULL)
 	{
-		// bu kaldırılcak unutma sikme işlemini başka türlü yapıcan
-		delete _inventory[idx];
+		if (_garbageIndex >= _garbageCapacity)
+		{
+			_expandGarbageInventory();
+		}
+		_garbage_inventory[_garbageIndex] = _inventory[idx];
+		_garbageIndex++;
 		_inventory[idx] = NULL;
 	}
 }
@@ -107,4 +149,19 @@ void Character::use(int idx, ICharacter& target)
 		_inventory[idx]->use(target);
 	}
 
+}
+
+void Character::_expandGarbageInventory()
+{
+	int new_capacity = _garbageCapacity * 2;
+
+	AMateria **materia = new AMateria*[new_capacity];
+
+	for (int i = 0; i < _garbageCapacity; i++)
+		materia[i] = _garbage_inventory[i];
+
+	delete[] _garbage_inventory;
+
+	_garbage_inventory = materia;
+	_garbageCapacity = new_capacity;
 }

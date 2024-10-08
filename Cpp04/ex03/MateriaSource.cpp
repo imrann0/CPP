@@ -43,24 +43,21 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& opt) {
 	return *this;
 }
 
-
-
 // learnMateria
-void MateriaSource::learnMateria(AMateria* m) {
+void MateriaSource::learnMateria(AMateria* m)
+{
 	if(!m)
 		return;
 	if(_inventoryCount >= 4)
-		return; // Envanter doluysa hiçbir şey yapma
-	// İlk boş slota ekle
+		return ;
 	for(int i = 0; i < 4; ++i)
 	{
-		if(_inventory[i] == nullptr)
+		if(_inventory[i] == NULL)
 		{
-			_inventory[i] = m->clone(); // Materia'nın bir kopyasını al
+			_inventory[i] = m->clone();// Materia'nın bir kopyasını al
 			_inventoryCount++;
-			// İsteğe bağlı: Eklendiğini bildiren bir mesaj
 			// std::cout << "Materia learned and stored in slot " << i << std::endl;
-			return;
+			return ;
 		}
 	}
 }
@@ -75,8 +72,7 @@ AMateria* MateriaSource::createMateria(const std::string& type)
 			return _inventory[i]->clone(); // Bulunan Materia'nın bir kopyasını döndür
 		}
 	}
-	// Bulunamadıysa 0 (nullptr) döndür
-	return nullptr;
+	return NULL;
 }
 /*
 1. learnMateria Fonksiyonu
