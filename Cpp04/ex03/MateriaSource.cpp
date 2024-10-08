@@ -9,6 +9,13 @@ MateriaSource::MateriaSource()
 		_inventory[i] = NULL;
 }
 
+MateriaSource::~MateriaSource()
+{
+	std::cout << "MateriaSource Destructor Called" << std::endl;
+	for (size_t i = 0; i < 4; i++)
+		delete _inventory[i];
+}
+
 MateriaSource::MateriaSource(const MateriaSource &copy)
 {
 	for (size_t i = 0; i < 4; i++)
@@ -28,7 +35,7 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& opt) {
 			if(_inventory[i])
 			{
 				delete _inventory[i];
-				_inventory[i] = nullptr;
+				_inventory[i] = NULL;
 			}
 		}
 		_inventoryCount = opt._inventoryCount;
@@ -37,7 +44,7 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& opt) {
 			if(opt._inventory[i])
 				_inventory[i] = opt._inventory[i]->clone();
 			else
-				_inventory[i] = nullptr;
+				_inventory[i] = NULL;
 		}
 	}
 	return *this;
@@ -56,6 +63,7 @@ void MateriaSource::learnMateria(AMateria* m)
 		{
 			_inventory[i] = m->clone();// Materia'nın bir kopyasını al
 			_inventoryCount++;
+			delete m;
 			// std::cout << "Materia learned and stored in slot " << i << std::endl;
 			return ;
 		}

@@ -5,10 +5,6 @@ AMateria::AMateria()
 	std::cout << "AMateria Default Constructor Called" << std::endl;
 	_type = "(null)";
 }
-AMateria::AMateria()
-{
-	std::cout << "AMateria Destructor Called" << std::endl;
-}
 
 AMateria::AMateria(std::string const &type)
 {
@@ -20,6 +16,11 @@ AMateria::AMateria(const AMateria& copy)
 {
 	std::cout << "AMateria Copy Constructor Called" << std::endl;
 	*this = copy;
+}
+
+AMateria::~AMateria()
+{
+	std::cout << "AMateria Destructor Called" << std::endl;
 }
 
 AMateria& AMateria::operator=(const AMateria &opt)

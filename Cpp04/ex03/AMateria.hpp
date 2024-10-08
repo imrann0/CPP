@@ -1,15 +1,15 @@
-#pragma once
-
 #ifndef AMATERIA_HPP
 #define AMATERIA_HPP
 #include <iostream>
 #include "ICharacter.hpp"
 
+class ICharacter;
+
 class AMateria
 {
 	public:
 		AMateria();
-		~AMateria();
+		virtual ~AMateria();
 		AMateria(std::string const & type);
 		AMateria(const AMateria& copy);
 		AMateria& operator=(const AMateria &opt);
