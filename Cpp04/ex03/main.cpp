@@ -5,7 +5,7 @@
 
 int main()
 {
-	/*{
+	{
 		IMateriaSource* src = new MateriaSource();
 		src->learnMateria(new Ice());
 		src->learnMateria(new Cure());
@@ -23,6 +23,6 @@ int main()
 		delete me;
 		delete src;
 		return 0;
-	}*/
+	}
 
 }

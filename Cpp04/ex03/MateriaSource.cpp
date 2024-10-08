@@ -50,7 +50,6 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& opt) {
 	return *this;
 }
 
-// learnMateria
 void MateriaSource::learnMateria(AMateria* m)
 {
 	if(!m)
@@ -61,38 +60,22 @@ void MateriaSource::learnMateria(AMateria* m)
 	{
 		if(_inventory[i] == NULL)
 		{
-			_inventory[i] = m->clone();// Materia'nın bir kopyasını al
+			_inventory[i] = m->clone();
 			_inventoryCount++;
 			delete m;
-			// std::cout << "Materia learned and stored in slot " << i << std::endl;
 			return ;
 		}
 	}
 }
 
-// createMateria
 AMateria* MateriaSource::createMateria(const std::string& type)
 {
 	for(int i = 0; i < 4; ++i)
 	{
 		if(_inventory[i] && _inventory[i]->getType() == type)
 		{
-			return _inventory[i]->clone(); // Bulunan Materia'nın bir kopyasını döndür
+			return _inventory[i]->clone();
 		}
 	}
 	return NULL;
 }
-/*
-1. learnMateria Fonksiyonu
-Parametre: AMateria* m – öğrenmek istediğiniz Materia.
-İşlev: Envanterdeki ilk boş slota (nullptr olan) materyayı ekler.
- Materia'nın bir kopyasını (clone()) alır ve saklar. Eğer envanter
- doluysa veya geçersiz bir Materia verilmişse, hiçbir şey yapmaz.
-
-2.createMateria Fonksiyonu
-Parametre: const std::string& type – oluşturmak istediğiniz Materia türü.
-İşlev: Envanterde öğrenilmiş olan Materia'lar arasında verilen türle (type) eşleşen bir Materia arar.
-Bulursa, bu Materia'nın bir kopyasını (clone()) döndürür. Bulamazsa, nullptr döndürür.
-
-
-*/
