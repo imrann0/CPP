@@ -101,6 +101,8 @@ Character::~Character()
 			_inventory[i] = NULL;
 		}
 	}
+	for (size_t i = 0; i < 4 && _garbage_inventory[i] != NULL; i++)
+		delete _garbage_inventory[i];
 	delete[] _garbage_inventory;
 }
 
