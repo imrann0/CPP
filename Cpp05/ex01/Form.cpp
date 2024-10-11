@@ -2,16 +2,25 @@
 
 Form::Form()
 {
+	std::cout << "Form Default Constructor Called" << std::endl;
 	_name = "Form";
-	_issigned = 0;
+	_issigned = false;
 	_requiredsigngrade = 0;
 	_requiredexecutegrade = 0;
-	std::cout << "Form Default Constructor Called" << std::endl;
+}
+
+Form::Form(int requiredsigngrade, int requiredexecutegrade)
+{
+	std::cout << "Form Parameterized Constructor Called" << std::endl;
+	_name = "Form";
+	_issigned = false;
+	_requiredsigngrade = requiredsigngrade;
+	_requiredexecutegrade = requiredexecutegrade;
 }
 
 Form::~Form()
 {
-	std::cout << "Destructor Called" << std::endl;
+	std::cout << "Form Destructor Called" << std::endl;
 }
 
 Form::Form(const Form &copy)
@@ -34,8 +43,19 @@ Form& Form::operator=(const Form &opt)
 
 void	Form::beSigned(const Bureaucrat &bureaucrat)
 {
-	if (this->getSignGrade() < bureaucrat.getGrade())
-		_issigned = true;
+	if (this->getSignGrade() <= bureaucrat.getGrade())
+
+	_issigned = true;
+}
+
+const char* Form::GradeTooHighException::what() const throw()
+{
+	return ("Grade too High");
+}
+
+const char* Form::GradeTooLowException::what() const throw()
+{
+	return ("Grade too Low");
 }
 
 /* Getter */

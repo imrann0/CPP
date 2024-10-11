@@ -8,6 +8,7 @@ class Form
 {
 	public:
 		Form();
+		Form(int requiredsigngrade, int requiredexecutegrade);
 		~Form();
 		Form(const Form &copy);
 		Form& operator=(const Form &opt);
@@ -18,6 +19,17 @@ class Form
 		int			getExecuteGrade() const;
 
 		void	beSigned(const Bureaucrat& bureaucrat);
+
+		class GradeTooLowException : public std::exception {
+			public:
+				virtual const char * what() const throw();
+		};
+
+		class GradeTooHighException : public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
+
 	private:
 		std::string	_name;
 		bool		_issigned;

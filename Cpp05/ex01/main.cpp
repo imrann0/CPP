@@ -3,7 +3,7 @@
 
 int main()
 {
-	Form a;
+	Form a(100, 50);
 	Bureaucrat b("bob", 100);
 
 	a.beSigned(b);
