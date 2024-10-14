@@ -44,6 +44,16 @@ std::string Bureaucrat::getName() const
 	return (_name);
 }
 
+void Bureaucrat::decrementGrade()
+{
+	_grade--;
+}
+
+void	Bureaucrat::incrementGrade()
+{
+	_grade++;
+}
+
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
 	return "GradeTooHighException: Grade is too high!";
