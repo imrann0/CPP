@@ -14,7 +14,7 @@ class Form
 		Form& operator=(const Form &opt);
 
 		std::string	getName() const;
-		bool		getStatus() const;
+		bool		getIsSigned() const;
 		int			getSignGrade() const;
 		int			getExecuteGrade() const;
 
@@ -30,10 +30,16 @@ class Form
 				virtual const char* what() const throw();
 		};
 
+		class FormAlreadySignedException : public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
 	private:
 		std::string	_name;
 		bool		_issigned;
 		int			_requiredsigngrade;
 		int			_requiredexecutegrade;
 };
+
+std::ostream	&operator<<(std::ostream &o, Form *form);
 #endif
