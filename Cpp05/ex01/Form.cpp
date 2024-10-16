@@ -22,6 +22,19 @@ Form::Form(int requiredsigngrade, int requiredexecutegrade)
 	_requiredexecutegrade = requiredexecutegrade;
 }
 
+Form::Form(std::string name, int requiredsigngrade, int requiredexecutegrade)
+{
+	std::cout << "Form Parameterized Constructor Called" << std::endl;
+	if (requiredexecutegrade > 150 || requiredsigngrade > 150)
+		throw Form::GradeTooHighException();
+	else if (requiredexecutegrade < 1 || requiredsigngrade < 1)
+		throw Form::GradeTooLowException();
+	_name = name;
+	_issigned = false;
+	_requiredsigngrade = requiredsigngrade;
+	_requiredexecutegrade = requiredexecutegrade;
+}
+
 Form::~Form()
 {
 	std::cout << "Form Destructor Called" << std::endl;
@@ -47,7 +60,7 @@ Form& Form::operator=(const Form &opt)
 
 void	Form::beSigned(const Bureaucrat &bureaucrat)
 {
-	if (this->getSignGrade() <= bureaucrat.getGrade())
+	if (bureaucrat.getGrade() <= this->getSignGrade() )
 		throw Form::GradeTooLowException();
 	else if (this->getIsSigned() == false)
 		_issigned = true;
@@ -66,7 +79,7 @@ const char* Form::GradeTooLowException::what() const throw()
 }
 
 const char* Form::FormAlreadySignedException::what() const throw() {
-	return "The form is already signed!";
+	return "The Form is already signed!";
 }
 
 /* Getter */
@@ -90,12 +103,12 @@ int		Form::getExecuteGrade() const
 	return (_requiredexecutegrade);
 }
 
-std::ostream	&operator<<(std::ostream &o, Form *form)
+std::ostream	&operator<<(std::ostream &o, Form *Form)
 {
-	o << "Form " << form->getName() <<
-	":\n\tsign-grade:\t" << form->getSignGrade() <<
-	"\n\texecute-grade:\t" << form->getExecuteGrade() <<
-	"\n\tis signed:\t" << form->getIsSigned() <<
+	o << "Form " << Form->getName() <<
+	":\n\tsign-grade:\t" << Form->getSignGrade() <<
+	"\n\texecute-grade:\t" << Form->getExecuteGrade() <<
+	"\n\tis signed:\t" << Form->getIsSigned() <<
 	std::endl;
 	return (o);
 }

@@ -1,15 +1,15 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 #include <iostream>
 
 int main()
 {
 	try
 	{
-		Form a("A",100, 50);
+		AForm a("A",100, 50);
 		Bureaucrat b("bob", 110);
 
 		a.beSigned(b);
-		b.signForm(a);
+		b.signAForm(a);
 		std::cout << a.getIsSigned() << std::endl;
 	}
 	catch(const std::exception& e)

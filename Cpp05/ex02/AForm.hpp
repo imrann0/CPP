@@ -1,20 +1,20 @@
-#ifndef Form_HPP
-# define Form_HPP
+#ifndef AForm_HPP
+# define AForm_HPP
 
 #include <iostream>
 #include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
-class Form
+class AForm
 {
 	public:
-		Form();
-		Form(int requiredsigngrade, int requiredexecutegrade);
-		Form(std::string name, int requiredsigngrade, int requiredexecutegrade);
-		~Form();
-		Form(const Form &copy);
-		Form& operator=(const Form &opt);
+		AForm();
+		AForm(int requiredsigngrade, int requiredexecutegrade);
+		AForm(std::string name, int requiredsigngrade, int requiredexecutegrade);
+		virtual ~AForm();
+		AForm(const AForm &copy);
+		AForm& operator=(const AForm &opt);
 
 		std::string	getName() const;
 		bool		getIsSigned() const;
@@ -22,6 +22,7 @@ class Form
 		int			getExecuteGrade() const;
 
 		void	beSigned(const Bureaucrat& bureaucrat);
+		virtual void execute(const Bureaucrat& executor) const = 0;
 
 		class GradeTooLowException : public std::exception {
 			public:
@@ -33,16 +34,21 @@ class Form
 				virtual const char* what() const throw();
 		};
 
-		class FormAlreadySignedException : public std::exception {
+		class AFormAlreadySignedException : public std::exception {
 			public:
 				virtual const char* what() const throw();
 		};
-	private:
+
+		class AFormNotBeenSigned : public std::exception{
+			public:
+				virtual const char* what() const throw();
+		};
+	protected:
 		std::string	_name;
 		bool		_issigned;
 		int			_requiredsigngrade;
 		int			_requiredexecutegrade;
 };
 
-std::ostream	&operator<<(std::ostream &o, Form *Form);
+std::ostream	&operator<<(std::ostream &o, AForm *AForm);
 #endif
