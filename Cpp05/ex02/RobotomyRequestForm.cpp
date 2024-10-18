@@ -11,8 +11,12 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &copy): AForm
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm &opt)
 {
-	AForm::operator=(opt);
-	this->_target = opt._target;
+
+	if (this != &opt)
+	{
+		AForm::operator=(opt);
+		this->_target = opt._target;
+	}
 	return (*this);
 }
 
