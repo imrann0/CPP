@@ -1,38 +1,29 @@
 #include "Form.hpp"
 
-Form::Form()
+Form::Form() : _name("Form"), _requiredsigngrade(150), _requiredexecutegrade(150)
 {
 	std::cout << "Form Default Constructor Called" << std::endl;
-	_name = "Form";
 	_issigned = false;
-	_requiredsigngrade = 150;
-	_requiredexecutegrade = 150;
 }
 
-Form::Form(int requiredsigngrade, int requiredexecutegrade)
+Form::Form(int requiredsigngrade, int requiredexecutegrade): _name("Form"), _requiredsigngrade(requiredsigngrade), _requiredexecutegrade(requiredexecutegrade)
 {
 	std::cout << "Form Parameterized Constructor Called" << std::endl;
 	if (requiredexecutegrade > 150 || requiredsigngrade > 150)
 		throw Form::GradeTooHighException();
 	else if (requiredexecutegrade < 1 || requiredsigngrade < 1)
 		throw Form::GradeTooLowException();
-	_name = "Form";
 	_issigned = false;
-	_requiredsigngrade = requiredsigngrade;
-	_requiredexecutegrade = requiredexecutegrade;
 }
 
-Form::Form(std::string name, int requiredsigngrade, int requiredexecutegrade)
+Form::Form(std::string name, int requiredsigngrade, int requiredexecutegrade): _name(name), _requiredsigngrade(requiredsigngrade), _requiredexecutegrade(requiredexecutegrade)
 {
 	std::cout << "Form Parameterized Constructor Called" << std::endl;
 	if (requiredexecutegrade > 150 || requiredsigngrade > 150)
 		throw Form::GradeTooHighException();
 	else if (requiredexecutegrade < 1 || requiredsigngrade < 1)
 		throw Form::GradeTooLowException();
-	_name = name;
 	_issigned = false;
-	_requiredsigngrade = requiredsigngrade;
-	_requiredexecutegrade = requiredexecutegrade;
 }
 
 Form::~Form()
@@ -40,10 +31,9 @@ Form::~Form()
 	std::cout << "Form Destructor Called" << std::endl;
 }
 
-Form::Form(const Form &copy)
+Form::Form(const Form &copy): _name(copy._name), _requiredsigngrade(copy._requiredsigngrade), _requiredexecutegrade(copy._requiredexecutegrade)
 {
 	std::cout << "Form Copy Constructor Called" << std::endl;
-	this->_name = copy._name;
 	this->_issigned = copy._issigned;
 }
 
@@ -52,7 +42,6 @@ Form& Form::operator=(const Form &opt)
 	std::cout << "Form Copy Assignment Operator Called" << std::endl;
 	if (this != &opt)
 	{
-		this->_name = opt._name;
 		this->_issigned = opt._issigned;
 	}
 	return (*this);
@@ -62,10 +51,10 @@ void	Form::beSigned(const Bureaucrat &bureaucrat)
 {
 	if (bureaucrat.getGrade() <= this->getSignGrade() )
 		throw Form::GradeTooLowException();
+	else if (this->getIsSigned() == true)
+		throw Form::FormAlreadySignedException();
 	else if (this->getIsSigned() == false)
 		_issigned = true;
-	else
-		throw Form::FormAlreadySignedException();
 }
 
 const char* Form::GradeTooHighException::what() const throw()
@@ -83,7 +72,7 @@ const char* Form::FormAlreadySignedException::what() const throw() {
 }
 
 /* Getter */
-std::string Form::getName() const
+const std::string Form::getName() const
 {
 	return (_name);
 }

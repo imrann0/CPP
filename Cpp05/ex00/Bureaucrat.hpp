@@ -12,7 +12,7 @@ class Bureaucrat
 		Bureaucrat(const Bureaucrat &copy);
 		Bureaucrat& operator=(const Bureaucrat &opt);
 
-		std::string	getName() const;
+		const std::string	getName() const;
 		int		getGrade() const ;
 		void	incrementGrade();
 		void	decrementGrade();
@@ -27,7 +27,7 @@ class Bureaucrat
 				virtual const char * what() const throw();
 		};
 	private:
-		std::string	_name;
+		const std::string	_name;
 		size_t		_grade;
 };
 

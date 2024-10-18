@@ -16,7 +16,7 @@ class Form
 		Form(const Form &copy);
 		Form& operator=(const Form &opt);
 
-		std::string	getName() const;
+		const std::string	getName() const;
 		bool		getIsSigned() const;
 		int			getSignGrade() const;
 		int			getExecuteGrade() const;
@@ -38,10 +38,10 @@ class Form
 				virtual const char* what() const throw();
 		};
 	private:
-		std::string	_name;
+		const std::string	_name;
 		bool		_issigned;
-		int			_requiredsigngrade;
-		int			_requiredexecutegrade;
+		const int			_requiredsigngrade;
+		const int			_requiredexecutegrade;
 };
 
 std::ostream	&operator<<(std::ostream &o, Form *Form);
