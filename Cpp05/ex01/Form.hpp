@@ -25,17 +25,17 @@ class Form
 
 		class GradeTooLowException : public std::exception {
 			public:
-				virtual const char * what() const throw();
+				const char * what() const throw();
 		};
 
 		class GradeTooHighException : public std::exception {
 			public:
-				virtual const char* what() const throw();
+				const char* what() const throw();
 		};
 
 		class FormAlreadySignedException : public std::exception {
 			public:
-				virtual const char* what() const throw();
+				const char* what() const throw();
 		};
 	private:
 		const std::string	_name;

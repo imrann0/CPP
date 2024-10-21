@@ -26,22 +26,22 @@ class AForm
 
 		class GradeTooLowException : public std::exception {
 			public:
-				virtual const char * what() const throw();
+				const char * what() const throw();
 		};
 
 		class GradeTooHighException : public std::exception {
 			public:
-				virtual const char* what() const throw();
+				const char* what() const throw();
 		};
 
 		class AFormAlreadySignedException : public std::exception {
 			public:
-				virtual const char* what() const throw();
+				const char* what() const throw();
 		};
 
 		class AFormNotBeenSigned : public std::exception{
 			public:
-				virtual const char* what() const throw();
+				const char* what() const throw();
 		};
 	protected:
 		const std::string	_name;
