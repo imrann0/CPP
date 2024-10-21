@@ -18,7 +18,7 @@ int main()
 
 		robot.beSigned(l);
 		robot.execute(l);
-
+		l.executeForm(morty);
 		std::cout << std::endl;
 		morty.execute(l);
 		rick.beSigned(l);

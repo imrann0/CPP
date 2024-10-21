@@ -46,15 +46,15 @@ static AForm* makeShrubbery(const std::string& target)
 
 AForm* Intern::makeForm(std::string form, std::string target)
 {
-	std::string forms[] = {"PresidentialPardonForm", "RobotomyRequestForm", "ShrubberyCreationForm"};
+	std::string forms[] = {"presidential pardon", "robotomy request", "shrubbery creation"};
 	AForm* (*all_forms[])(const std::string&) = {&makePresident, &makeRobot, &makeShrubbery};
 
 	for (int i = 0; i < 3; i++)
 	{
 		if (forms[i] == form)
 		{
-			std::cout << "Intern creates " << form << " now" << std::endl;
-			return (all_forms[i](form));
+			std::cout << "Intern creates " << form << std::endl;
+			return (all_forms[i](target));
 		}
 	}
 	std::cout << "Intern Can Not Create A Form Called " << form << std::endl;

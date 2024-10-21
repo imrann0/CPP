@@ -1,5 +1,5 @@
 #ifndef INTERN_HPP
-# define INTETN_HPP
+# define INTERN_HPP
 
 #include <iostream>
 #include "AForm.hpp"

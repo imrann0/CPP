@@ -16,6 +16,7 @@ class RobotomyRequestForm: public AForm
 	private:
 		std::string _target;
 };
+
 std::ostream	&operator<<(std::ostream &o, RobotomyRequestForm *a);
 
 
