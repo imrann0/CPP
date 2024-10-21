@@ -3,6 +3,7 @@ SRC =	Bureaucrat.cpp \
 		AForm.cpp \
 		RobotomyRequestForm.cpp \
 		ShrubberyCreationForm.cpp \
+		PresidentialPardonForm.cpp \
 		main.cpp
 
 
