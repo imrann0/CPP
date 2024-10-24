@@ -1,20 +1,23 @@
-#ifndef SCALARCONVERTER_HPP
-# define SCALARCONVERTER_HPP
+// ScalarConverter.hpp
+#ifndef SCALAR_CONVERTER_HPP
+#define SCALAR_CONVERTER_HPP
 
 #include <string>
 
 class ScalarConverter {
+public:
+	static void convert(const std::string& literal);
 
-	public:
-		static void convert(std::string value);
-		static std::string control(std::string value);
-		static void	print(std::string value);
-	private:
-		ScalarConverter();
-		static int _int;
-		static char _char;
-		static float _float;
-		static double _double;
+private:
+	static bool isChar(const std::string& literal);
+	static bool isInt(const std::string& literal);
+	static bool isFloat(const std::string& literal);
+	static bool isDouble(const std::string& literal);
+
+	static void displayChar(double value);
+	static void displayInt(double value);
+	static void displayFloat(double value);
+	static void displayDouble(double value);
 };
 
 #endif

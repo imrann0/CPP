@@ -1,57 +1,106 @@
+
 #include "ScalarConverter.hpp"
 #include <iostream>
+#include <iomanip>
+#include <limits>
+#include <cstdlib>
+#include <cmath>
 
-int ScalarConverter::_int = 0;
-char ScalarConverter::_char = 0;
-float ScalarConverter::_float = 0.f;
-double ScalarConverter::_double = 0;
 
-ScalarConverter::ScalarConverter()
+void ScalarConverter::convert(const std::string& literal)
 {
-	std::cout << "ScalarConverter Default Constructor Called" << std::endl;
+	double value = 0.0;
+
+	if (isChar(literal))
+		value = static_cast<double>(literal[0]);
+	else if (isInt(literal))
+		value = static_cast<double>(std::atoi(literal.c_str()));
+	else if (isFloat(literal))
+		value = std::strtof(literal.c_str(), NULL);
+	else if (isDouble(literal))
+		value = std::strtod(literal.c_str(), NULL);
+	else {
+		std::cout << "Invalid literal" << std::endl;
+		return;
+	}
+
+	displayChar(value);
+	displayInt(value);
+	displayFloat(value);
+	displayDouble(value);
 }
 
-void ScalarConverter::convert(std::string value)
+bool ScalarConverter::isChar(const std::string& literal)
 {
-	(void)value;
-	return ;
+	return literal.length() == 1 && std::isprint(literal[0]) && !std::isdigit(literal[0]);
 }
 
-std::string ScalarConverter::control(std::string value)
+bool ScalarConverter::isInt(const std::string& literal)
 {
-	if (value.compare("nanf") == 0 || value.compare("nan") == 0)
-		return (value);
-	else if (value.compare("+inf") == 0 || value.compare("+inff"))
-		return (value);
-	else if (value.compare("-inf") == 0 || value.compare("-inff"))
-		return (value);
-	return ("NULL");
+	char* end;
+
+	long result = std::strtol(literal.c_str(), &end, 10);
+	return *end == '\0' && result >= std::numeric_limits<int>::min() && result <= std::numeric_limits<int>::max();
 }
 
-void	ScalarConverter::print(std::string value)
+bool ScalarConverter::isFloat(const std::string& literal)
 {
-	if (value == "+inf" || value == "+inff")
-	{
+	return literal.find('f') != std::string::npos && literal[literal.length() - 1] == 'f';
+}
+
+bool ScalarConverter::isDouble(const std::string& literal)
+{
+	char* end;
+
+	std::strtod(literal.c_str(), &end);
+	return *end == '\0';
+}
+
+void ScalarConverter::displayChar(double value)
+{
+	if (std::isnan(value) || std::isinf(value) || value < std::numeric_limits<char>::min() || value > std::numeric_limits<char>::max())
 		std::cout << "char: impossible" << std::endl;
+	else if (!std::isprint(static_cast<int>(value)))
+		std::cout << "char: Non displayable" << std::endl;
+	else
+		std::cout << "char: '" << static_cast<char>(value) << "'" << std::endl;
+}
+
+void ScalarConverter::displayInt(double value)
+{
+	if (std::isnan(value) || std::isinf(value) || value < std::numeric_limits<int>::min() || value > std::numeric_limits<int>::max())
 		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: +inff" << std::endl;
-		std::cout << "double: +inf" << std::endl;
-		return ;
-	}
-	else if (value == "-inff" || value == "-inf")
+	else
+		std::cout << "int: " << static_cast<int>(value) << std::endl;
+}
+
+void ScalarConverter::displayFloat(double value)
+{
+
+	if (std::isnan(value))
+		std::cout << "float: nanf" << std::endl;
+	else if (std::isinf(value))
 	{
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: -inff" << std::endl;
-		std::cout << "double: -inf" << std::endl;
-		return ;
+		if (value > 0)
+			std::cout << "float: +inff" << std::endl;
+		else
+			std::cout << "float: -inff" << std::endl;
 	}
-	else if (value == "nanf" || value == "nan")
+	else
+		std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(value) << "f" << std::endl;
+}
+
+void ScalarConverter::displayDouble(double value)
+{
+	if (std::isnan(value))
+		std::cout << "double: nan" << std::endl;
+	else if (std::isinf(value))
 	{
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: -nanf" << std::endl;
-		std::cout << "double: -nan" << std::endl;
-		return ;
+		if (value > 0)
+			std::cout << "double: +inf" << std::endl;
+		else
+			std::cout << "double: -inf" << std::endl;
 	}
+	else
+		std::cout << "double: " << std::fixed << std::setprecision(1) << value << std::endl;
 }
