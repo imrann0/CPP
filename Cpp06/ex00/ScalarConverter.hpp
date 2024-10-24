@@ -13,11 +13,15 @@ private:
 	static bool isInt(const std::string& literal);
 	static bool isFloat(const std::string& literal);
 	static bool isDouble(const std::string& literal);
-
 	static void displayChar(double value);
 	static void displayInt(double value);
 	static void displayFloat(double value);
 	static void displayDouble(double value);
+	ScalarConverter();
+	ScalarConverter(const ScalarConverter &src);
+	ScalarConverter& operator=(const ScalarConverter &src);
+	~ScalarConverter();
+
 };
 
 #endif

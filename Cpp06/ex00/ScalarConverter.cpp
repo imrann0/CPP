@@ -6,6 +6,10 @@
 #include <cstdlib>
 #include <cmath>
 
+ScalarConverter::ScalarConverter() {}
+ScalarConverter::ScalarConverter(const ScalarConverter &src) { (void)src; }
+ScalarConverter& ScalarConverter::operator=(const ScalarConverter &src) { (void)src; return (*this); }
+ScalarConverter::~ScalarConverter() {}
 
 void ScalarConverter::convert(const std::string& literal)
 {
