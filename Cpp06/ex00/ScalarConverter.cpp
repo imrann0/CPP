@@ -47,10 +47,38 @@ bool ScalarConverter::isInt(const std::string& literal)
 	return *end == '\0' && result >= std::numeric_limits<int>::min() && result <= std::numeric_limits<int>::max();
 }
 
+
 bool ScalarConverter::isFloat(const std::string& literal)
 {
-	return literal.find('f') != std::string::npos && literal[literal.length() - 1] == 'f';
+	char* end;
+
+
+	float a = std::strtof(literal.c_str(), &end);
+	if (isnan(a) && literal == "nanf") {
+		return true;
+	}
+
+	if (*end == 'f' && *(end + 1) == '\0')
+	{
+
+		int fCount = 0;
+		for (size_t i = 0; i < literal.length(); ++i)
+		{
+			if (literal[i] == 'f')
+			{
+				fCount++;
+				if (fCount > 1)
+				{
+					return false;
+				}
+			}
+		}
+
+		return literal.find('.') != std::string::npos;
+	}
+	return false;
 }
+
 
 bool ScalarConverter::isDouble(const std::string& literal)
 {
