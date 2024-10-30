@@ -14,7 +14,6 @@ I min(const I &a, const I &b)
 	return (a < b ? a : b);
 }
 template <typename B>
-
 B max(const B &a, const B &b)
 {
 	return (a > b ? a : b);
