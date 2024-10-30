@@ -37,28 +37,19 @@ void identify(Base& p)
 		(void)dynamic_cast<A&>(p);
 		std::cout << "A" << std::endl;
 	}
-	catch(const std::exception &e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	catch(...) {}
 	try
 	{
 		(void)dynamic_cast<B&>(p);
 		std::cout << "B" << std::endl;
 	}
-	catch(const std::exception &e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	catch(...) {}
 	try
 	{
 		(void)dynamic_cast<C&>(p);
 		std::cout << "C" << std::endl;
 	}
-	catch(const std::exception &e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	catch(...) {}
 
 }
 
@@ -69,5 +60,6 @@ int main()
 	Base *base = generate();
 
 	identify(base);
+	identify(*base);
 
 }

@@ -50,13 +50,11 @@ bool ScalarConverter::isInt(const std::string& literal)
 
 bool ScalarConverter::isFloat(const std::string& literal)
 {
-	char* end;
-
+	char* end = NULL;
 
 	float a = std::strtof(literal.c_str(), &end);
-	if (isnan(a) && literal == "nanf") {
+	if ((isnan(a) && literal == "nanf") || isinf(a))
 		return true;
-	}
 
 	if (*end == 'f' && *(end + 1) == '\0')
 	{
