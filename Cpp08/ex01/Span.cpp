@@ -66,11 +66,26 @@ void Span::addNumber(int value)
 	_numbers.push_back(value);
 }
 
+void Span::addNumbers(iterator begin, iterator end)
+{
+	size_t count = std::distance(begin, end);
+
+	if (_numbers.size() + count > _n)
+		throw std::overflow_error("Not enough space in Span for the new numbers");
+	_numbers.insert(_numbers.end(), begin, end);
+}
+
 void Span::print() const
 {
 	for (size_t i = 0; i < _numbers.size(); i++)
 		std::cout << _numbers[i] << " ";
 	std::cout << std::endl;
+}
 
+void Span::iprint()
+{
+	std::vector<int>::iterator it = _numbers.begin();
+	for ( ; it != _numbers.end(); it++)
+		std::cout << *it << std::endl;
 }
 

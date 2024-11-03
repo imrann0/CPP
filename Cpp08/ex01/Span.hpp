@@ -4,6 +4,8 @@
 #include <cstddef>
 #include <vector>
 
+typedef typename std::vector<int>::iterator iterator;
+
 class Span
 {
 	public:
@@ -14,11 +16,14 @@ class Span
 		Span& operator=(const Span &opt);
 
 		void addNumber(int value);
+		void addNumbers(iterator begin, iterator end);
 		int shortestSpan() const;
 		int longestSpan() const;
+
 		size_t size() const;
 		size_t capacity() const;
 		void print() const;
+		void iprint();
 
 	private:
 		unsigned int _n;
