@@ -39,7 +39,7 @@ int	Span::shortestSpan() const
 
 	min_span = tmp[1] - tmp[0];
 
-	for (size_t i = 1; i < tmp.size(); i++)
+	for (size_t i = 1; i < tmp.size() - 1; i++)
 	{
 		int span = tmp[i + 1] - tmp[i];
 		if (span < min_span)

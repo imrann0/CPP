@@ -4,7 +4,7 @@
 #include <cstddef>
 #include <vector>
 
-typedef typename std::vector<int>::iterator iterator;
+typedef std::vector<int>::iterator iterator;
 
 class Span
 {

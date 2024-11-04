@@ -72,7 +72,6 @@ int main()
 			std::vector<int> randomNumbers = generateRandomNumbers(count, min, max);
 			Span b(10);
 			b.addNumbers(randomNumbers.begin(), randomNumbers.end());
-
 			std::cout << "Random Numbers: ";
 			b.print();
 		}
