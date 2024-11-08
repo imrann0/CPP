@@ -36,5 +36,8 @@ class BitcoinExchange
 		std::map<std::string, double> _data;
 };
 
+void verifyDateValidity(size_t year, size_t month, size_t day);
+void validateDateFormat(std::string date);
+bool IsNumeric(const std::string& str);
 
 #endif
