@@ -3,6 +3,22 @@
 #include <fstream>
 #include <cstdlib>
 
+int trim(std::string& str)
+{
+	size_t first = str.find_first_not_of(' ');
+	if (first == std::string::npos)
+	{
+		str = "";
+		return 1;
+	}
+	size_t last = str.find_last_not_of(' ');
+	if (first == 0 && last == str.size() - 1)
+		return 0;
+	str = str.substr(first, last - first + 1);
+	return 1;
+}
+
+
 BitcoinExchange::BitcoinExchange(): _data()
 {
 	std::cout << "Default Constructor Called" << std::endl;
@@ -61,6 +77,7 @@ void	BitcoinExchange::ReadInput(std::string file)
 	if (!input.good())
 		throw BitcoinExchange::FileOpenException();
 	std::getline(input, line);
+	trim(line);
 	if (line != "date | value")
 		throw BitcoinExchange::InvalidArgumentException();
 
@@ -71,6 +88,7 @@ void	BitcoinExchange::ReadInput(std::string file)
 		{
 			date = line.substr(0, separator);
 			value = line.substr(separator + 3);
+			trim(date);
 			validateDateFormat(date);
 			std::strtod(value.c_str(), &end);
 			if (*end == '\0')
@@ -159,7 +177,9 @@ void validateDateFormat(std::string date)
 	size_t secondDash = date.find("-", firstDash + 1);
 	month = date.substr(firstDash + 1, secondDash - firstDash - 1);
 	day = date.substr(secondDash + 1);
+	if (trim(year) || trim(month) || trim(day))
+		throw BitcoinExchange::InvalidArgumentException();
 	if (!IsNumeric(year) || !IsNumeric(month) || !IsNumeric(day))
-		std::cout << "Error8: bad input => " << year << "-" << month << "-" << day << std::endl;
+		std::cout << "Error: bad input => " << year << "-" << month << "-" << day << std::endl;
 	verifyDateValidity(std::atoi(year.c_str()), std::atoi(month.c_str()), std::atoi(day.c_str()));
 }
