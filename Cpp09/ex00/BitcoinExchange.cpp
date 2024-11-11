@@ -21,8 +21,6 @@ int trim(std::string& str)
 
 BitcoinExchange::BitcoinExchange(): _data()
 {
-	std::cout << "Default Constructor Called" << std::endl;
-
 	std::ifstream input;
 	std::string	line;
 
@@ -80,7 +78,6 @@ void	BitcoinExchange::ReadInput(std::string file)
 	trim(line);
 	if (line != "date | value")
 		throw BitcoinExchange::InvalidArgumentException();
-
 	while (std::getline(input, line))
 	{
 		size_t separator =  line.find(" | ");
