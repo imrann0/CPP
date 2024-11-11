@@ -44,12 +44,14 @@ int RPN::evaluate() {
 
 	while (tokens >> token)
 	{
-		if (std::isdigit(token[0]))
+		if (token.length() > 1)
+			throw std::runtime_error("Error: Invalid expression");
+		else if (std::isdigit(token[0]))
 			stack.push(std::atoi(token.c_str()));
 		else if (isOperator(token))
 		{
-			if (stack.size() < 2) throw std::runtime_error("Error: Insufficient operands");
-
+			if (stack.size() < 2)
+				throw std::runtime_error("Error: Insufficient operands");
 			int b = stack.top();
 			stack.pop();
 			int a = stack.top();
@@ -60,7 +62,8 @@ int RPN::evaluate() {
 			throw std::runtime_error("Error: Invalid token");
 		}
 	}
-	if (stack.size() != 1) throw std::runtime_error("Error: Invalid expression");
+	if (stack.size() != 1)
+		throw std::runtime_error("Error: Invalid expression");
 
 	return stack.top();
 }
